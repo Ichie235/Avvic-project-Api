@@ -3,14 +3,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const cors = require('cors')
-require('dotenv').config()
 
+require('dotenv').config()
+const corsOptions = require('./config/corsOptions')
 
 const PORT = process.env.PORT || 3000
 
 const app = express();
 
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(bodyParser.json());
 
 // app.post("/post_name",async(req,res)=>{
@@ -31,8 +32,8 @@ app.post('/send-email', async (req, res) => {
     });
 
     const mailOptions = {
-      from: 'chinemeremiche@gmail.com',
-      to: 'chinemeremichie@gmail.com',
+      from: process.env.USER,
+      to: process.env.TO,
       subject: 'New email from the website',
       text: `Email: ${email}`,
     };
