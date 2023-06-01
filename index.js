@@ -19,6 +19,9 @@ app.use(bodyParser.json());
 //   console.log(name)
   
 // })
+app.get('/', async(req,res)=>{
+  res.send('hello world')
+})
 app.post('/send-email', async (req, res) => {
   const { email } = req.body;
 
